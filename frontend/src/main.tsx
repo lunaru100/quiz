@@ -1,10 +1,26 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import WelcomePage from "./WelcomePage";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
+const AppContainer: React.FC = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <WelcomePage />,
+    },
+    {
+      path: "/quiz",
+      element: <div>Quiz</div>,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+};
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <AppContainer />
+  </StrictMode>
+);
