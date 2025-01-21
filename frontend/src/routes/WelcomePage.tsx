@@ -40,6 +40,7 @@ function WelcomePage() {
     event.preventDefault();
     console.log("Number of questions:", numQuestions);
     console.log("Category:", category);
+    //fetch to db for questions
     navigate(`/quiz`);
   };
 
@@ -48,7 +49,7 @@ function WelcomePage() {
       <span id="welcome">Welcome to our Arcane + JJK quiz</span>
       <form id="startQuizForm" onSubmit={handleSubmit}>
         <span className="selectQuestions">Select the number of questions</span>
-        <div id="btnContainer">
+        <div className="btnContainer">
           {["5", "10", "15", "20"].map((num) => (
             <button
               key={num}

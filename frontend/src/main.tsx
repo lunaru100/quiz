@@ -1,7 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import WelcomePage from "./WelcomePage";
+import WelcomePage from "./routes/WelcomePage";
+import Quiz from "./routes/Quiz";
 import "./index.css";
 
 const AppContainer: React.FC = () => {
@@ -12,7 +13,7 @@ const AppContainer: React.FC = () => {
     },
     {
       path: "/quiz",
-      element: <div>Quiz</div>,
+      element: <Quiz />,
     },
   ]);
 

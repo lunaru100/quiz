@@ -14,6 +14,11 @@ body {
   padding: 0;
 }
 
+button {
+  outline: none;
+  color: var(--parchment);
+}
+
 #welcomePage {
   width: 100vw;
   height: 100vh;
@@ -44,7 +49,7 @@ body {
   gap: 2vh;
 }
 
-#btnContainer {
+.btnContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,7 +74,7 @@ body {
   height: 80%;
 }
 
-#startBtn{
+#startBtn {
   width: 30%;
   height: 15%;
   margin: 2vh;
@@ -95,4 +100,57 @@ body {
   outline: none;
   border-radius: 2vh;
   cursor: pointer;
+}
+
+#quizContainer {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#quiz {
+  width: 50%;
+  height: 60%;
+  background-color: var(--cambridge-blue);
+  color: var(--rich-black);
+  border-radius: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.quizBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 70%;
+  height: 40%;
+}
+
+.quizBtn {
+  width: 40%;
+  height: 35%;
+  margin: 2%;
+  border-radius: 1vh;
+  border: none;
+  background-color: var(--teal);
+}
+
+.submitBtn {
+  width: 40%;
+  height: 15%;
+  border-radius: 1vh;
+  border: none;
+  background-color: var(--teal);
+  margin: 4vh;
+}
+
+#question {
+  margin: 2vh;
 }
