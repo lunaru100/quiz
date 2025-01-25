@@ -4,8 +4,14 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+argon2 = "0.5.3"
 axum = { version = "0.8.1", features = ["ws"] }
+axum-extra = { version = "0.10.0", features = ["cookie"] }
+chrono = "0.4.39"
 dotenvy = "0.15.7"
+http = "1.2.0"
+jsonwebtoken = "9.3.0"
+rand = "0.8.5"
 serde = { version = "1.0.217", features = ["derive"] }
 sqlx = { version = "0.8.3", features = ["sqlite", "uuid", "macros", "runtime-tokio", "regexp"] }
 tokio = { version = "1.40.0", features = ["rt-multi-thread"] }
