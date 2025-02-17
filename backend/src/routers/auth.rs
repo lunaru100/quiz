@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use argon2::{Argon2, PasswordHash, PasswordVerifier, PasswordHasher};
-use axum::{extract::{Request, State}, http::{HeaderMap, HeaderValue, StatusCode}, middleware::Next, response::{IntoResponse, Response}, Json, Router};
+use axum::{extract::{Request, State}, http::{HeaderMap, HeaderValue, StatusCode}, middleware::Next, response::{IntoResponse, Response}, routing::post, Json, Router};
 use axum_extra::extract::{cookie::Cookie, CookieJar};
 use jsonwebtoken::{DecodingKey, EncodingKey, Header, TokenData, Validation};
 use serde::{Deserialize, Serialize};
@@ -154,8 +154,9 @@ impl AuthRouter {
 impl Into<Router<AppState>> for AuthRouter {
     fn into(self) -> Router<AppState> {
         Router::new()
-            .route("/login", axum::routing::post(Self::login))
-
+            .route("/login", post(Self::login))
+            .route("/register", post(Self::register))
+            .route("/logout", post(Self::logout))
     }
 }
 
@@ -184,6 +185,7 @@ pub fn encode_jwt(id: &Uuid) -> Result<String, ()> {
         &EncodingKey::from_secret(SECRET.get().unwrap().as_ref()),
     )
     .map_err(|_| ())
+
 }
 
 pub fn decode_jwt(token: &str) -> Result<TokenData<Claims>, ()> {
