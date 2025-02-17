@@ -66,6 +66,7 @@ pub struct Question {
     pub answers: Vec<String>,
     pub category: Uuid,
     pub id: Uuid,
+    #[serde(skip)]
     pub answer: usize,
 }
 

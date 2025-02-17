@@ -1,6 +1,6 @@
 use std::{collections::HashMap, str::FromStr, sync::Arc};
 
-use axum::{extract::Request, Router, ServiceExt};
+use axum::{extract::Request, middleware, Router, ServiceExt};
 use game::Game;
 use rand::Rng;
 use routers::{auth::AuthRouter, game::GameRouter};
@@ -65,6 +65,7 @@ async fn main() {
         .nest_service("/example", ServeDir::new("./example"))
         .nest_service("/assets", ServeDir::new("../frontend/dist/assets"))
         .nest_service("/img", ServeDir::new("../frontend/img"))
+        .layer(middleware::from_fn(routers::auth::authorize))
         .fallback_service(ServeFile::new("../frontend/dist/index.html"))
         .with_state(AppState {
             database: Arc::new(pool),
