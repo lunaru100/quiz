@@ -18,6 +18,12 @@ pub struct GameConfig {
     pub num_questions: usize,
 }
 
+#[derive(Deserialize)]
+pub struct AnswerRequest {
+    game_id: Uuid,
+    answer: usize,
+}
+
 impl GameRouter {
     pub async fn start(
         State(AppState { games, database }): State<AppState>,
@@ -30,13 +36,18 @@ impl GameRouter {
             games.write().await.insert(game.clone().read().await.get_id(), game.clone());
         }
 
-        let user = match sqlx::query_as::<_, User>("SELECT * FROM users WHERE id = ?1")
-            .bind(claims.id)
-            .fetch_one(&*database)
-            .await {
-                Ok(user) => user,
-                Err(_) => return StatusCode::UNAUTHORIZED.into_response(),
-            };
+
+        let user = if claims.guest {
+            User::new_guest(claims.id)
+        } else {
+            match sqlx::query_as::<_, User>("SELECT * FROM users WHERE id = ?1")
+                .bind(claims.id)
+                .fetch_one(&*database)
+                .await {
+                    Ok(user) => user,
+                    Err(_) => return StatusCode::UNAUTHORIZED.into_response(),
+                }
+        };
         game.clone().write().await.players.push(PlayerData::new(user.id, user.username));
 
         (StatusCode::CREATED, Json(game.clone().read().await.get_id())).into_response()
@@ -98,7 +109,7 @@ impl GameRouter {
     pub async fn answer(
         State(AppState { games, database }): State<AppState>,
         Extension(claims): Extension<Claims>,
-        Json(game_id): Json<Uuid>,
+        Json(AnswerRequest { game_id, answer }): Json<AnswerRequest>,
     ) -> Response {
         let game = match games.read().await.get(&game_id) {
             Some(game) => game.clone(),
@@ -111,7 +122,7 @@ impl GameRouter {
             return StatusCode::UNAUTHORIZED.into_response();
         }
 
-        todo!()
+        (StatusCode::OK, Json(game_ref.get_questions().last().unwrap().answer == answer)).into_response()
     }
 
     pub async fn categories(
@@ -135,6 +146,7 @@ impl Into<Router<AppState>> for GameRouter {
             .route("/categories", get(Self::categories))
             .route("/start", post(Self::start))
             .route("/question", post(Self::question))
+            .route("/answer", post(Self::answer))
             .layer(middleware::from_fn(auth::force_authorize))
     }
 }

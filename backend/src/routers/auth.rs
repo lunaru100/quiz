@@ -56,7 +56,7 @@ impl AuthRouter {
             }
         }
 
-        let res = match encode_jwt(&user.id) {
+        let res = match encode_jwt(&user.id, false) {
             Ok(res) => res,
             Err(_) => return StatusCode::INTERNAL_SERVER_ERROR.into_response(),
         };
@@ -149,6 +149,36 @@ impl AuthRouter {
         )
             .into_response()
     }
+
+    pub async fn guest() -> Response {
+        let id = Uuid::new_v4();
+
+        let res = match encode_jwt(&id, true) {
+            Ok(res) => res,
+            Err(_) => return StatusCode::INTERNAL_SERVER_ERROR.into_response(),
+        };
+
+        (
+            StatusCode::OK,
+            HeaderMap::try_from(&HashMap::from([(
+                http::header::SET_COOKIE,
+                HeaderValue::from_str(
+                    Cookie::build(("Authorization", &res))
+                        .path("/")
+                        .http_only(true)
+                        .same_site(axum_extra::extract::cookie::SameSite::Lax)
+                        .build()
+                        .to_string()
+                        .as_str(),
+                )
+                .unwrap(),
+                //HeaderValue::from_str(format!("Authorization={}; Path=/; HttpOnly; SameSite=Lax", res).as_str())
+                //    .unwrap(),
+            )]))
+            .unwrap(),
+        ).into_response()
+
+    }
 }
 
 impl Into<Router<AppState>> for AuthRouter {
@@ -157,6 +187,7 @@ impl Into<Router<AppState>> for AuthRouter {
             .route("/login", post(Self::login))
             .route("/register", post(Self::register))
             .route("/logout", post(Self::logout))
+            .route("/guest", post(Self::guest))
     }
 }
 
@@ -165,11 +196,12 @@ pub struct Claims {
     exp: usize,
     iat: usize,
     pub id: Uuid,
+    pub guest: bool,
 }
 
 pub static SECRET: OnceCell<String> = OnceCell::const_new();
 
-pub fn encode_jwt(id: &Uuid) -> Result<String, ()> {
+pub fn encode_jwt(id: &Uuid, guest: bool) -> Result<String, ()> {
     let now = chrono::Utc::now();
     let delta = chrono::Duration::days(1);
     let exp = (now + delta).timestamp() as usize;
@@ -178,6 +210,7 @@ pub fn encode_jwt(id: &Uuid) -> Result<String, ()> {
         exp,
         iat,
         id: id.clone(),
+        guest,
     };
     jsonwebtoken::encode(
         &Header::default(),
@@ -185,7 +218,6 @@ pub fn encode_jwt(id: &Uuid) -> Result<String, ()> {
         &EncodingKey::from_secret(SECRET.get().unwrap().as_ref()),
     )
     .map_err(|_| ())
-
 }
 
 pub fn decode_jwt(token: &str) -> Result<TokenData<Claims>, ()> {

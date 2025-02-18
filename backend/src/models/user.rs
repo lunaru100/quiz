@@ -8,3 +8,14 @@ pub struct User {
     pub email: String,
     pub password: String,
 }
+
+impl User {
+    pub fn new_guest(id: Uuid) -> Self {
+        Self {
+            id,
+            username: "guest".to_string(),
+            email: String::new(),
+            password: String::new(),
+        }
+    }
+}
