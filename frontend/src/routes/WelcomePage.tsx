@@ -11,6 +11,7 @@ function WelcomePage() {
   const [selectedCategoryButton, setSelectedCategoryButton] = useState<
     string | null
   >(null);
+  const [categories, setCategories] = useState([]);
 
   const handleNumBtnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -40,10 +41,18 @@ function WelcomePage() {
     event.preventDefault();
     console.log("Number of questions:", numQuestions);
     console.log("Category:", category);
-    //fetch to db for questions
+
+    if (numQuestions !== 0 || category !== "") {
+      fetch("api/game/categories", {
+        method: "GET",
+      })
+        .then((data) => data.json())
+        .then((data) => setCategories(data));
+    }
     navigate(`/quiz`);
   };
 
+  console.log(categories);
   return (
     <div id="welcomePage">
       <span id="welcome">Welcome to our Arcane + JJK quiz</span>

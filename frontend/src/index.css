@@ -154,3 +154,43 @@ button {
 #question {
   margin: 2vh;
 }
+
+.accountForms {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.accountForms > p {
+  margin: 0;
+  font-size: 5vh;
+}
+
+.accountInputs {
+  width: 25%;
+  height: 5%;
+  background-color: var(--parchment);
+  border: none;
+  outline: none;
+  border-radius: 1vh;
+  padding: 1vh 3vh;
+  color: var(--teal);
+}
+
+.accountInputs::placeholder {
+  color: var(--teal);
+}
+
+.accountBtns {
+  width: 15%;
+  height: 7.5%;
+  background-color: var(--teal);
+  border: none;
+  outline: none;
+  border-radius: 1vh;
+  font-size: 3vh;
+}
