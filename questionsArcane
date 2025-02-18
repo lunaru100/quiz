@@ -1,129 +1,20 @@
-1. What are the names of the two main sisters in Arcane?
-
-A) Caitlyn & Jinx
-B) Vi & Jinx ✅
-C) Vi & Caitlyn
-D) Mel & Powder
-
-2. Which city does Arcane take place in?
-
-A) Noxus
-B) Ionia
-C) Piltover ✅
-D) Bandle City
-
-3. What is the name of the underground district in Arcane?
-
-A) Zaun ✅
-B) The Shadow Isles
-C) Bilgewater
-D) Shurima
-
-4. What is the real name of Jinx before she took that name?
-
-A) Vi
-B) Powder ✅
-C) Sevika
-D) Cait
-
-5. What was the name of Vander’s bar?
-
-A) The Lanes
-B) The Last Drop ✅
-C) The Gutter
-D) The Rusty Gear
-
-6. What is the name of Jayce’s mentor in Piltover?
-
-A) Silco
-B) Viktor
-C) Heimerdinger ✅
-D) Singed
-
-7. What is the real reason Vander stops fighting and becomes a father figure?
-A) He is mortally wounded in battle
-B) He makes a deal to protect Zaun ✅
-C) He is captured by Piltover
-D) He is cursed by a Zaunite shaman
-
-8. Who is the leader of the chem-barons in Zaun?
-A) Singed
-B) Sevika
-C) Silco ✅
-D) Vander
-
-9. What is Viktor’s main motivation for developing Hextech?
-A) To get revenge on Piltover
-B) To help people ✅
-C) To become a powerful mage
-D) To impress Heimerdinger
-
-10. What was the name of Silco’s second-in-command who fights with mechanical arms?
-A) Deckard
-B) Sevika ✅
-C) Finn
-D) Smeet
-
-11. What happens to Heimerdinger after he opposes the council’s Hextech advancements?
-A) He is executed
-B) He is exiled from the council ✅
-C) He is arrested
-D) He is promoted to head scientist
-
-12. What triggers Jinx’s final breakdown in the last episode of season 1?
-A) Seeing Vi side with Caitlyn
-B) Killing Silco ✅
-C) Losing her rocket launcher
-D) Getting captured by the enforcers
-
-13. Which group does Ekko lead in Zaun?
-
-A) The Firelights ✅
-B) The Chem Barons
-C) The Red Caps
-D) The Silver Fangs
-
-14. What does Silco say about Jinx in his final moments?
-
-A) "She's my greatest weapon."
-B) "You're perfect." ✅
-C) "She’s a loose cannon."
-D) "I should have left her behind."
-
-15. Why does Vi get sent to prison?
-
-A) She is framed for murder
-B) She gets caught in a Piltover heist
-C) Marcus arrests her after Vander’s death ✅
-D) She turns herself in to protect Powder
-
-16. What is Jayce’s weapon in the series?
-
-A) A magical spear
-B) A hammer that transforms into a cannon ✅
-C) A pair of dual swords
-D) A Hextech crossbow
-
-17. What is Mel Medarda’s home nation?
-A) Noxus ✅
-B) Ionia
-C) Demacia
-D) The Freljord
-
-18. What makes Ekko’s fighting style unique?
-A) He fights with Hextech armor
-B) He uses time-warping abilities ✅
-C) He fights with Shimmer enhancements
-D) He has magical fire abilities
-
-19. Who is the mysterious scientist working in the shadows of Zaun?
-A) Viktor
-B) Singed ✅
-C) Warwick
-D) Ryze
-
-20. What does Jinx see when she’s hallucinating?
-A) Her past self and dead friends ✅
-B) Visions of a powerful future
-C) Piltover burning
-D) Vander speaking to her
+INSERT INTO questions VALUES (id, 'What are the names of the two main sisters in Arcane?', 'Caitlyn & Jinx', 'Vi & Jinx ', 'Vi & Caitlyn', ' Mel & Powder', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'Which city does Arcane take place in?', 'Noxus', 'Ionia', 'Piltover ', ' Bandle City', 2, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What is the name of the underground district in Arcane?', 'Zaun ', 'The Shadow Isles', 'Bilgewater', ' Shurima', 0, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What is the real name of Jinx before she took that name?', 'Vi', 'Powder ', 'Sevika', ' Cait', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What was the name of Vander’s bar?', 'The Lanes', 'The Last Drop ', 'The Gutter', ' The Rusty Gear', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What is the name of Jayce’s mentor in Piltover?', 'Silco', 'Viktor', 'Heimerdinger ', ' Singed', 2, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What is the real reason Vander stops fighting and becomes a father figure?', 'He is mortally wounded in battle', 'He makes a deal to protect Zaun ', 'He is captured by Piltover', ' He is cursed by a Zaunite shaman', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'Who is the leader of the chem-barons in Zaun?', 'Singed', 'Sevika', 'Silco ', ' Vander', 2, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What is Viktor’s main motivation for developing Hextech?', 'To get revenge on Piltover', 'To help people ', 'To become a powerful mage', ' To impress Heimerdinger', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What was the name of Silco’s second-in-command who fights with mechanical arms?', 'Deckard', 'Sevika ', 'Finn', ' Smeet', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What happens to Heimerdinger after he opposes the council’s Hextech advancements?', 'He is executed', 'He is exiled from the council ', 'He is arrested', ' He is promoted to head scientist', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What triggers Jinx’s final breakdown in the last episode of season 1?', 'Seeing Vi side with Caitlyn', 'Killing Silco ', 'Losing her rocket launcher', ' Getting captured by the enforcers', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'Which group does Ekko lead in Zaun?', 'The Firelights ', 'The Chem Barons', 'The Red Caps', ' The Silver Fangs', 0, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What does Silco say about Jinx in his final moments?', '"She''s my greatest weapon."', '"You''re perfect." ', '"She’s a loose cannon."', ' "I should have left her behind."', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'Why does Vi get sent to prison?', 'She is framed for murder', 'She gets caught in a Piltover heist', 'Marcus arrests her after Vander’s death ', ' She turns herself in to protect Powder', 2, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What is Jayce’s weapon in the series?', 'A magical spear', 'A hammer that transforms into a cannon ', 'A pair of dual swords', ' A Hextech crossbow', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What is Mel Medarda’s home nation?', 'Noxus ', 'Ionia', 'Demacia', ' The Freljord', 0, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What makes Ekko’s fighting style unique?', 'He fights with Hextech armor', 'He uses time-warping abilities ', 'He fights with Shimmer enhancements', ' He has magical fire abilities', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'Who is the mysterious scientist working in the shadows of Zaun?', 'Viktor', 'Singed ', 'Warwick', ' Ryze', 1, X'E0F2320BA7BE46C9ABD033D2A08C608F');
+INSERT INTO questions VALUES (id, 'What does Jinx see when she’s hallucinating?', 'Her past self and dead friends ', 'Visions of a powerful future', 'Piltover burning', ' Vander speaking to her', 0, X'E0F2320BA7BE46C9ABD033D2A08C608F');
