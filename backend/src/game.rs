@@ -23,6 +23,10 @@ impl Game {
         }
     }
 
+    pub fn get_categories(&self) -> &[Uuid] {
+        &self.categories
+    }
+
     pub fn get_id(&self) -> Uuid {
         self.id
     }

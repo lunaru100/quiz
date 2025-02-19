@@ -86,15 +86,20 @@ impl GameRouter {
 
         let id_hash_set = game_ref.get_questions().into_iter().map(|x| x.id).collect::<HashSet<_>>();
         let sql = format!(
-            "SELECT * FROM questions WHERE category = ?1 AND ID NOT IN ({}) ORDER BY RANDOM() LIMIT 1",
-            (2..=id_hash_set.len()+2)
-                .map(|x| format!("?{}", x))
+            "SELECT * FROM questions WHERE category IN ({}) AND ID NOT IN ({}) ORDER BY RANDOM() LIMIT 1",
+            (0..game_ref.get_categories().len()).map(|x| format!("?{}", x+1)).collect::<Vec<String>>().join(","),
+            (game_ref.get_categories().len()..=id_hash_set.len()+game_ref.get_categories().len())
+                .map(|x| format!("?{}", x+1))
                 .collect::<Vec<String>>()
                 .join(",")
         );
 
         let mut query = sqlx::query_as::<_, models::question::Question>(&sql)
             .bind(game_ref.random_category());
+
+        for cat in game_ref.get_categories() {
+            query = query.bind(cat);
+        }
 
         for id in id_hash_set {
             query = query.bind(id);
