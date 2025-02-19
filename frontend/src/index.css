@@ -114,7 +114,7 @@ button {
 
 #quiz {
   width: 50%;
-  height: 60%;
+  height: 65%;
   background-color: var(--cambridge-blue);
   color: var(--rich-black);
   border-radius: 2vh;
@@ -122,33 +122,34 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1vh;
 }
 
 .quizBtnContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   width: 70%;
-  height: 40%;
+  height: 50%;
 }
 
 .quizBtn {
-  width: 40%;
-  height: 35%;
-  margin: 2%;
+  width: 80%;
+  height: 100%;
+  margin: 1%;
   border-radius: 1vh;
   border: none;
   background-color: var(--teal);
 }
 
 .submitBtn {
-  width: 40%;
-  height: 15%;
+  width: 30%;
+  height: 10%;
   border-radius: 1vh;
   border: none;
   background-color: var(--teal);
-  margin: 4vh;
+  margin-top: 3vh;
 }
 
 #question {
@@ -193,4 +194,19 @@ button {
   outline: none;
   border-radius: 1vh;
   font-size: 3vh;
+}
+
+#loginAndRegister {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1vh;
+}
+
+.mainPageAccountBtns {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--ash-gray);
+  font-size: 120%;
 }

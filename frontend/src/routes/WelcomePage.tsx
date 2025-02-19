@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function WelcomePage() {
@@ -41,20 +41,76 @@ function WelcomePage() {
     event.preventDefault();
     console.log("Number of questions:", numQuestions);
     console.log("Category:", category);
+    let data: string[] = [];
 
-    if (numQuestions !== 0 || category !== "") {
-      fetch("api/game/categories", {
-        method: "GET",
-      })
-        .then((data) => data.json())
-        .then((data) => setCategories(data));
+    if (
+      numQuestions !== 0 &&
+      category !== "" &&
+      sessionStorage.getItem("categories") !== null
+    ) {
+      const categories = sessionStorage.getItem("categories");
+      if (categories) {
+        const cat = JSON.parse(categories);
+        if (category === "All") {
+          data[0] = cat["JJK"];
+          data[1] = cat["arcane"];
+        } else if (category === "JJK") {
+          data[0] = cat["JJK"];
+        } else {
+          data[0] = cat["arcane"];
+        }
+      }
+      console.log(data);
+      fetch("api/game/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          num_questions: numQuestions,
+          categories: data,
+        }),
+      }).then((data) => {
+        data.json();
+        console.log(data);
+      });
     }
     navigate(`/quiz`);
   };
 
+  useEffect(() => {
+    fetch("api/auth/guest", {
+      method: "POST",
+    }).then(() => {
+      fetch("api/game/categories", {
+        method: "GET",
+      })
+        .then((data) => data.json())
+        .then((data) => {
+          setCategories(data);
+          console.log(data);
+          sessionStorage.setItem("categories", JSON.stringify(data));
+        });
+    });
+  }, []);
+
   console.log(categories);
   return (
     <div id="welcomePage">
+      <div id="loginAndRegister">
+        <button
+          className="mainPageAccountBtns"
+          id="loginBtn"
+          onClick={() => navigate("/login")}
+        >
+          Login
+        </button>
+        <button
+          className="mainPageAccountBtns"
+          id="registerBtn"
+          onClick={() => navigate("/register")}
+        >
+          Register
+        </button>
+      </div>
       <span id="welcome">Welcome to our Arcane + JJK quiz</span>
       <form id="startQuizForm" onSubmit={handleSubmit}>
         <span className="selectQuestions">Select the number of questions</span>
