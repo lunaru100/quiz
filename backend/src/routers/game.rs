@@ -19,6 +19,11 @@ pub struct GameConfig {
 }
 
 #[derive(Deserialize)]
+pub struct QuestionRequest {
+    game_id: Uuid,
+}
+
+#[derive(Deserialize)]
 pub struct AnswerRequest {
     game_id: Uuid,
     answer: usize,
@@ -56,7 +61,7 @@ impl GameRouter {
     pub async fn question(
         State(AppState { games, database }): State<AppState>,
         Extension(claims): Extension<Claims>,
-        Json(game_id): Json<Uuid>,
+        Json(QuestionRequest { game_id }): Json<QuestionRequest>,
     ) -> Response {
         let game = match games.read().await.get(&game_id) {
             Some(game) => game.clone(),
