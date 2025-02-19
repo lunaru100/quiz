@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Quiz() {
   const [selectedBtn, setSelectedBtn] = useState<string | null>(null);
+  const navigate = useNavigate();
   const handleBtnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const btnText = event.currentTarget.textContent;
@@ -19,6 +21,21 @@ function Quiz() {
   useEffect(() => {
     console.log("Selected button:", selectedBtn);
   }, [selectedBtn]);
+
+  useEffect(() => {
+    console.log("page loaded");
+    const gameId = sessionStorage.getItem("gameId");
+    console.log(gameId);
+    if (gameId) {
+      fetch("api/game/question", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ game_id: gameId }),
+      }).then((data) => console.log(data));
+    } else {
+      navigate("/", { replace: true });
+    }
+  }, []);
 
   return (
     <div id="quizContainer">

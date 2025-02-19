@@ -55,6 +55,8 @@ impl GameRouter {
         };
         game.clone().write().await.players.push(PlayerData::new(user.id, user.username));
 
+        println!("{:?}", game.clone().read().await.players);
+
         (StatusCode::CREATED, Json(game.clone().read().await.get_id())).into_response()
     }
 
@@ -65,13 +67,15 @@ impl GameRouter {
     ) -> Response {
         let game = match games.read().await.get(&game_id) {
             Some(game) => game.clone(),
-            None => return StatusCode::NOT_FOUND.into_response(),
+            None => return (StatusCode::NOT_FOUND, "game not found").into_response(),
         };
 
         let game_ref = game.read().await;
 
-        if !(&game_ref.players).into_iter().find(|x| x.get_id() == claims.id).is_none() {
-            return StatusCode::UNAUTHORIZED.into_response();
+        println!("{:?}", game_ref.players);
+
+        if (&game_ref.players).into_iter().find(|x| x.get_id() == claims.id).is_none() {
+            return (StatusCode::UNAUTHORIZED, "player not in gae").into_response();
         }
         /*
          sqlx::query_as::
@@ -101,7 +105,8 @@ impl GameRouter {
             .await
         {
             Ok(Some(question)) => question,
-            _ => return StatusCode::NOT_FOUND.into_response(),
+            Ok(None) => return (StatusCode::NOT_FOUND, "Ok none").into_response(),
+            Err(e) => return (StatusCode::NOT_FOUND, format!("{}", e)).into_response(),
         };
 
         let question: Question = question.into();

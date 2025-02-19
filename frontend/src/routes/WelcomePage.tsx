@@ -68,12 +68,17 @@ function WelcomePage() {
           num_questions: numQuestions,
           categories: data,
         }),
-      }).then((data) => {
-        data.json();
-        console.log(data);
-      });
+      })
+        .then((data) => {
+          return data.json();
+        })
+        .then((data) => {
+          sessionStorage.removeItem("gameId");
+          sessionStorage.setItem("gameId", data);
+          console.log(sessionStorage.getItem("gameId"));
+          navigate(`/quiz`);
+        });
     }
-    navigate(`/quiz`);
   };
 
   useEffect(() => {

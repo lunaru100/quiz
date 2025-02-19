@@ -40,6 +40,7 @@ impl Game {
     }
 }
 
+#[derive(Debug)]
 pub struct PlayerData {
     id: Uuid,
     name: String,
