@@ -5,6 +5,7 @@ import WelcomePage from "./routes/WelcomePage";
 import Quiz from "./routes/Quiz";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
+import Result from "./routes/Result";
 import "./index.css";
 
 const AppContainer: React.FC = () => {
@@ -24,6 +25,10 @@ const AppContainer: React.FC = () => {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/results",
+      element: <Result />,
     },
   ]);
 

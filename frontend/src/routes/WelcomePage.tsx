@@ -76,6 +76,9 @@ function WelcomePage() {
           sessionStorage.removeItem("gameId");
           sessionStorage.setItem("gameId", data);
           console.log(sessionStorage.getItem("gameId"));
+          sessionStorage.setItem("score", "0");
+          sessionStorage.setItem("currentQuestionCount", "0");
+          sessionStorage.setItem("questionCount", numQuestions.toString());
           navigate(`/quiz`);
         });
     }
@@ -152,7 +155,7 @@ function WelcomePage() {
             </button>
           ))}
         </div>
-        <button id="startBtn" type="submit">
+        <button className="startBtn" type="submit">
           Start Quiz
         </button>
       </form>

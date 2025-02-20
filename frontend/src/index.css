@@ -74,7 +74,7 @@ button {
   height: 80%;
 }
 
-#startBtn {
+.startBtn {
   width: 30%;
   height: 15%;
   margin: 2vh;
@@ -154,6 +154,7 @@ button {
 
 #question {
   margin: 2vh;
+  text-align: center;
 }
 
 .accountForms {
@@ -209,4 +210,19 @@ button {
   outline: none;
   color: var(--ash-gray);
   font-size: 120%;
+}
+
+#result {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#result > p {
+  font-size: 5vh;
+  font-weight: 400;
+  text-align: center;
 }
