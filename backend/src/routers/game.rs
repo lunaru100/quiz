@@ -133,7 +133,7 @@ impl GameRouter {
 
         let game_ref = game.read().await;
 
-        if !(&game_ref.players).into_iter().find(|x| x.get_id() == claims.id).is_none() {
+        if (&game_ref.players).into_iter().find(|x| x.get_id() == claims.id).is_none() {
             return StatusCode::UNAUTHORIZED.into_response();
         }
 
